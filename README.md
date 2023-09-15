@@ -4,13 +4,26 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+Create a .env file and copy and paste this config:
 
-A few resources to get you started if this is your first Flutter project:
+applicationIdTest = neyasis.cases
+applicationIdSuffixTest = .test
+applicationNameTest = Neyasis Test
+apiBaseUrlTest =  https://64f8d8de824680fd21802184.mockapi.io/api/v1/
+versionNameTest = 1.0.0
+versionCodeTest = 1
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+applicationIdUAT =  neyasis.cases
+applicationIdSuffixUAT =  .uat
+applicationNameUAT = Neyasis UAT
+apiBaseUrlUAT =  https://64f8d8de824680fd21802184.mockapi.io/api/v1/
+versionNameUAT = 2.0.0
+versionCodeUAT = 2
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+applicationIdProd =  neyasis.cases
+applicationNameProd = Neyasis
+apiBaseUrlProd =  https://64f8d8de824680fd21802184.mockapi.io/api/v1/
+versionNameProd = 3.0.0
+versionCodeProd = 3
+
+

@@ -1,0 +1,123 @@
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file('local.properties')
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withReader('UTF-8') { reader ->
+        localProperties.load(reader)
+    }
+}
+
+def flutterRoot = localProperties.getProperty('flutter.sdk')
+if (flutterRoot == null) {
+    throw new GradleException("Flutter SDK not found. Define location with flutter.sdk in the local.properties file.")
+}
+
+def flutterVersionCode = localProperties.getProperty('flutter.versionCode')
+if (flutterVersionCode == null) {
+    flutterVersionCode = '1'
+}
+
+def flutterVersionName = localProperties.getProperty('flutter.versionName')
+if (flutterVersionName == null) {
+    flutterVersionName = '1.0'
+}
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
+
+android {
+    namespace "neyasis.cases"
+    compileSdkVersion flutter.compileSdkVersion
+    ndkVersion flutter.ndkVersion
+    lintOptions {
+        checkReleaseBuilds false
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
+
+    defaultConfig {
+        applicationId "neyasis.cases"
+        minSdkVersion flutter.minSdkVersion
+        targetSdkVersion flutter.targetSdkVersion
+        versionCode flutterVersionCode.toInteger()
+        versionName flutterVersionName
+        flavorDimensions "default"
+
+    }
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+    signingConfigs {
+        release {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile keystoreProperties['storeFile'] ? file(keystoreProperties['storeFile']) : null
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+
+    }
+
+
+def dotEnv = new Properties()
+def dotEnvFile = rootProject.file('.env')
+if (dotEnvFile.exists()) {
+    dotEnvFile.withReader('UTF-8') { reader ->
+        dotEnv.load(reader)
+    }
+}
+
+    productFlavors{
+        fTest{
+            dimension 'default'
+            resValue "string", "app_name", dotEnv["applicationNameTest"]
+            applicationIdSuffix dotEnv["applicationIdSuffixTest"]
+            versionName dotEnv["versionNameTest"]
+            versionCode dotEnv["versionCodeTest"].toInteger()
+
+        }
+        uat{
+            dimension 'default'
+            resValue "string", "app_name", dotEnv["applicationNameUAT"]
+            applicationIdSuffix dotEnv["applicationIdSuffixUAT"]
+            versionName dotEnv["versionNameUAT"]
+            versionCode dotEnv["versionCodeUAT"].toInteger()
+        }
+
+        production{
+            dimension 'default'
+            resValue "string", "app_name", dotEnv["applicationNameProd"]
+            applicationIdSuffix ''
+            versionName dotEnv["versionNameProd"]
+            versionCode dotEnv["versionCodeProd"].toInteger()
+
+        }
+
+    }
+}
+
+flutter {
+    source '../..'
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}

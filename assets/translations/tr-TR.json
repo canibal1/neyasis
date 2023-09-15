@@ -1,0 +1,32 @@
+{
+  "add_button": "Ekle",
+  "edit_button": "Düzenle",
+  "delete_button": "Sil",
+  "done_button" : "Tamam",
+  "create_button" : "Oluştur",
+
+  "accounts_title": "Hesaplar",
+  "edit_accounts_title": "Hesabı Düzenle",
+  "create_accounts_title": "Hesap Oluştur",
+
+  "enter_name": "İsim Giriniz",
+  "enter_surname": "Soyadı Giriniz",
+  "enter_birthdate": "Doğum Tarihi Giriniz",
+  "enter_salary": "Maaşı Giriniz (Yıllık)",
+  "enter_phone_number": "Telefon Numarası Giriniz (Yıllık)",
+  "enter_identity": "T.C Kimlik Numarası Giriniz",
+
+  "name_example" : "Mehmet",
+  "surname_example" : "Akgün",
+  "birthdate_example": "1987-10-10",
+  "salary_example" : "4000000",
+  "phone_number_example": "905443553324",
+  "identity_example" : "86412245338",
+
+  "name_error" : "Lütfen bir isim girin",
+  "surname_error" : "Lütfen bir soyadı girin",
+  "birthdate_error": "Lütfen doğum tarihini girin",
+  "salary_error" : "Lütfen geçerli bir maaş girin",
+  "phone_number_error": "Lütfen geçerli bir telefon numarası girin",
+  "identity_error" : "Lütfen geçerli bir T.C Kimlik Numarası girin"
+}
