@@ -1,0 +1,32 @@
+{
+  "add_button": "Add",
+  "edit_button": "Edit",
+  "delete_button": "Delete",
+  "done_button" : "Done",
+  "create_button" : "Create",
+
+  "accounts_title": "Accounts",
+  "edit_accounts_title": "Edit Account",
+  "create_accounts_title": "Create Account",
+
+  "enter_name": "Enter Name",
+  "enter_surname": "Enter Surname",
+  "enter_birthdate": "Enter Birthdate",
+  "enter_salary": "Enter Salary (Annual)",
+  "enter_phone_number": "Enter Phone Number (Annual)",
+  "enter_identity": "Enter T.C Identity Number",
+
+  "name_example" : "John",
+  "surname_example" : "Doe",
+  "birthdate_example": "1987-10-10",
+  "salary_example" : "4000000",
+  "phone_number_example": "905443553324",
+  "identity_example" : "86412245338",
+
+  "name_error" : "Please enter a name",
+  "surname_error" : "Please enter a surname",
+  "birthdate_error": "Please enter valid a birthdate",
+  "salary_error" : "Please enter a valid salary",
+  "phone_number_error": "Please enter a valid phone number",
+  "identity_error" : "Please enter a valid T.C Identity Number"
+}

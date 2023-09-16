@@ -1,16 +1,13 @@
 # neyasis
 
-A new Flutter project.
+# You can open the app with this commands:
 
-## Getting Started
+flutter run  --flavor prod --target ../neyasis/lib/main.dart
 
-This project is a starting point for a Flutter application.
+flutter run  --flavor uat --target ../neyasis/lib/main.dart
 
-A few resources to get you started if this is your first Flutter project:
+flutter run  --flavor ftest --target ../neyasis/lib/main.dart
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+# You can test the application end-to-end with integration test with the following command:
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+flutter test --flavor ftest integration_test/end_to_end_test.dart
