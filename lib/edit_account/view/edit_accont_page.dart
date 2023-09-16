@@ -104,6 +104,7 @@ class _EditAccountsPageState extends State<EditAccountsPage> {
             actions: [
               BlocBuilder<AccountBloc, AccountState>(
                 builder: (BuildContext contextAccount, Object? state) => CupertinoButton(
+                  key: Key("edit_page__done_button"),
                   child: const Text("done_button", style: TextStyle(color: Colors.red)).tr(),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -126,20 +127,59 @@ class _EditAccountsPageState extends State<EditAccountsPage> {
   Widget _buildFormContent() {
     final fields = [
       // You can make this as a separate object if needed for cleaner representation
-      {"controller": _nameController, "hint": "name_example".tr(), "label": "enter_name".tr(), "validator": _validateName},
-      {"controller": _surnameController, "hint": "surname_example".tr(), "label": "enter_surname".tr(), "validator": _validateSurname},
-      {"controller": _birthdateController, "hint": "birthdate_example".tr(), "label": "enter_birthdate".tr(), "validator": _validateBirthDate},
-      {"controller": _salaryController, "hint": "salary_example".tr(), "label": "enter_salary".tr(), "validator": _validateSalary},
-      {"controller": _phoneNumberController, "hint": "phone_number_example".tr(), "label": "enter_phone_number".tr(), "validator":
-      _validatePhoneNumber},
-      {"controller": _identityController, "hint": "identity_example".tr(), "label": "enter_identity".tr(), "validator": _validateIdentity},
+      {
+        "key": "enter_name__key",
+        "controller": _nameController,
+        "hint": "name_example".tr(),
+        "label": "enter_name".tr(),
+        "validator": _validateName,
+      },
+      {
+        "key": "enter_surname__key",
+        "controller": _surnameController,
+        "hint": "surname_example".tr(),
+        "label": "enter_surname".tr(),
+        "validator": _validateSurname
+      },
+      {
+        "key": "enter_birthdate__key",
+        "controller": _birthdateController,
+        "hint": "birthdate_example".tr(),
+        "label": "enter_birthdate".tr(),
+        "validat"
+            "or": _validateBirthDate
+      },
+      {
+        "key": "enter_salary__key",
+        "controller": _salaryController,
+        "hint": "salary_example".tr(),
+        "label": "enter_salary".tr(),
+        "validator": _validateSalary
+      },
+      {
+        "key": "enter_phone_number__key",
+        "controller": _phoneNumberController,
+        "hint": "phone_number_example".tr(),
+        "label": "enter_phone_number".tr(),
+        ""
+            "validator": _validatePhoneNumber
+      },
+      {
+        "key": "enter_identity__key",
+        "controller": _identityController,
+        "hint": "identity_example".tr(),
+        "label": "enter_identity".tr(),
+        "validator": _validateIdentity
+      },
     ];
 
     return Form(
       key: _formKey,
       child: ListView(
+        key: Key("edit_account_page__listview_key"),
         children: fields
             .map((field) => AccountTextField(
+                  textFieldKey: Key("${field["key"] as String}"),
                   controller: field["controller"] as TextEditingController,
                   hintText: field["hint"] as String,
                   labelText: field["label"] as String,

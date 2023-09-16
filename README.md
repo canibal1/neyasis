@@ -4,7 +4,7 @@ A new Flutter project.
 
 ## Getting Started
 
-Create a .env file and copy and paste this config:
+Create a .env file from the android side and copy and paste this config:
 
 applicationIdTest = neyasis.cases
 applicationIdSuffixTest = .test

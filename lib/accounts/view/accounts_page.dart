@@ -31,6 +31,7 @@ class _AccountsPageState extends State<AccountsPage> {
               children: [
                 if (state.editMode.isEditMode)
                   CupertinoButton(
+                      key: Key("delete__button"),
                       child: Text(
                         "delete_button",
                         style: TextStyle(color: Colors.red),
@@ -43,47 +44,49 @@ class _AccountsPageState extends State<AccountsPage> {
                               ),
                             );
                         context.read<AccountBloc>().add(
-                          ToggleEditModeEvent(
-                            isEditActive: false,
-                            selectedAccount: Account(),
-                          ),
-                        );
-                      }),
-                CupertinoButton(
-                    child: Text(
-                      state.editMode.isEditMode ? "edit_button" : "add_button",
-                      style: TextStyle(color: Colors.white),
-                    ).tr(),
-                    onPressed: () {
-                      if (state.editMode.isEditMode) {
-                        BlocProvider.of<EditAccountBloc>(context).add(
-                          EditAccountEvent(
-                            account: state.editMode.selectedAccount,
-                          ),
-                        );
-                        context.read<AccountBloc>().add(
                               ToggleEditModeEvent(
                                 isEditActive: false,
                                 selectedAccount: Account(),
                               ),
                             );
-                        Navigator.pushNamed(
-                          context,
-                          "/editAccountPage",
-                        ).then(
-                          (value) => BlocProvider.of<EditAccountBloc>(context).add(
-                            EditAccountChangeStatusEvent(
-                              status: EditAccountStatus.initial,
+                      }),
+                CupertinoButton(
+                  key: Key("add_or_edit__button"),
+                  child: Text(
+                    state.editMode.isEditMode ? "edit_button" : "add_button",
+                    style: TextStyle(color: Colors.white),
+                  ).tr(),
+                  onPressed: () {
+                    if (state.editMode.isEditMode) {
+                      BlocProvider.of<EditAccountBloc>(context).add(
+                        EditAccountEvent(
+                          account: state.editMode.selectedAccount,
+                        ),
+                      );
+                      context.read<AccountBloc>().add(
+                            ToggleEditModeEvent(
+                              isEditActive: false,
+                              selectedAccount: Account(),
                             ),
+                          );
+                      Navigator.pushNamed(
+                        context,
+                        "/editAccountPage",
+                      ).then(
+                        (value) => BlocProvider.of<EditAccountBloc>(context).add(
+                          EditAccountChangeStatusEvent(
+                            status: EditAccountStatus.initial,
                           ),
-                        );
-                      } else {
-                        Navigator.pushNamed(
-                          context,
-                          "/addAccountPage",
-                        );
-                      }
-                    }),
+                        ),
+                      );
+                    } else {
+                      Navigator.pushNamed(
+                        context,
+                        "/addAccountPage",
+                      );
+                    }
+                  },
+                ),
               ],
             );
           })

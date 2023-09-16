@@ -138,11 +138,11 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   ) async {
     try {
       final state = this.state;
-
       final account = await _postAccount(account: event.account.copyWith(id: "${state.accounts.length + 1}"));
-      if (account == false) return;
+      print(account);
+      if (account != null) return;
       final newAccounts = [...state.accounts];
-      newAccounts.add(event.account);
+      newAccounts.add(account ?? Account());
       newAccounts.sort(
         (a, b) => (int.parse(a.id ?? "0")).compareTo(int.parse(b.id ?? "0")),
       );
@@ -256,18 +256,18 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
     }
   }
 
-  Future<bool> _postAccount({required Account account}) async {
+  Future<Account?> _postAccount({required Account account}) async {
     try {
       final data = account.toJson();
       final response = await httpClient.post(Urls.addAccount, data);
       if (response!.statusCode == 201) {
-        return true;
+        return Account.fromJson(response.data);
       } else {
-        return false;
+        return null;
       }
     } on Exception catch (e) {
       print("error : $e");
-      return false;
+      return null;
     }
   }
 

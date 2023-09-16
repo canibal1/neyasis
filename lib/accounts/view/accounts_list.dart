@@ -51,42 +51,52 @@ class _AccountsListState extends State<AccountsList> {
           context.read<AccountBloc>().add(AccountFetchEvent());
         },
         child: ListView.builder(
+          key: Key("account_list__key"),
           itemBuilder: (BuildContext context, int index) {
             return index >= accountState.accounts.length
                 ? const BottomLoader()
-                : GestureDetector(
-                    onLongPress: () {
-                      if (!accountState.editMode.isEditMode) {
-                        context.read<AccountBloc>().add(
-                              ToggleEditModeEvent(
-                                isEditActive: !accountState.editMode.isEditMode,
-                                selectedAccount: accountState.accounts[index],
-                              ),
-                            );
-                      }
-                    },
-                    onTap: () {
-                      if (accountState.editMode.isEditMode) {
-                        context.read<AccountBloc>().add(
-                              ToggleEditModeEvent(
-                                isEditActive: false,
-                                selectedAccount: Account(),
-                              ),
-                            );
-                      }
-                    },
-                    child: Container(
-                      color: accountState.editMode.isEditMode && accountState.editMode.selectedAccount.id == (accountState.accounts[index].id ?? "")
-                          ? ColorUi.selectedItem
-                          : null,
-                      child: AccountListItem(
-                        account: accountState.accounts[index],
-                      ),
-                    ),
+                : listViewGestureDetector(
+                    accountState,
+                    context,
+                    index,
                   );
           },
           itemCount: accountState.hasReachedMax ? accountState.accounts.length : accountState.accounts.length + 1,
           controller: _scrollController,
+        ),
+      ),
+    );
+  }
+
+  GestureDetector listViewGestureDetector(AccountState accountState, BuildContext context, int index) {
+    return GestureDetector(
+      onLongPress: () {
+        if (!accountState.editMode.isEditMode) {
+          context.read<AccountBloc>().add(
+                ToggleEditModeEvent(
+                  isEditActive: !accountState.editMode.isEditMode,
+                  selectedAccount: accountState.accounts[index],
+                ),
+              );
+        }
+      },
+      onTap: () {
+        if (accountState.editMode.isEditMode) {
+          context.read<AccountBloc>().add(
+                ToggleEditModeEvent(
+                  isEditActive: false,
+                  selectedAccount: Account(),
+                ),
+              );
+        }
+      },
+      child: Container(
+        color: accountState.editMode.isEditMode && accountState.editMode.selectedAccount.id == (accountState.accounts[index].id ?? "")
+            ? ColorUi.selectedItem
+            : null,
+        child: AccountListItem(
+          key: Key("account_list_item$index"),
+          account: accountState.accounts[index],
         ),
       ),
     );

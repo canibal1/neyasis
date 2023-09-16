@@ -25,7 +25,7 @@
 
   "name_error" : "Please enter a name",
   "surname_error" : "Please enter a surname",
-  "birthdate_error": "Please enter a birthdate",
+  "birthdate_error": "Please enter valid a birthdate",
   "salary_error" : "Please enter a valid salary",
   "phone_number_error": "Please enter a valid phone number",
   "identity_error" : "Please enter a valid T.C Identity Number"

@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
                 BlocProvider.value(value: _accountBloc),
                 BlocProvider.value(value: _editAccountBloc),
               ],
-              child: const AccountsPage(),
+              child: const AccountsPage(key:Key("accounts_page__key")),
             ),
         PageRouth.addAccountPage: (context) => BlocProvider.value(
               value: _accountBloc,

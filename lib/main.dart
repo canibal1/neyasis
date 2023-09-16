@@ -10,6 +10,8 @@ import 'package:neyasis/simple_bloc_observer.dart';
 import 'package:neyasis/utils/http_client.dart';
 import 'edit_account/bloc/edit_account_bloc.dart';
 
+ String environment = "";
+
 Future<void> main() async {
   Bloc.observer = const SimpleBlocObserver();
 
@@ -21,10 +23,16 @@ Future<void> main() async {
 
   runApp(
     EasyLocalization(
+      key: Key("easy_localization__widget_key"),
       supportedLocales: [Locale('en', 'US'), Locale('tr', 'TR')],
-      path: 'assets/translations', // <-- change the path of the translation files
+      path: 'assets/translations',
+      startLocale: environment == "test" ? Locale('en', 'US') : null,
       fallbackLocale: Locale('en', 'US'),
-      child: MyApp(accountBloc: _accountBloc, editAccountBloc: _editAccountBloc),
+      child: MyApp(
+        key: Key("my_app__key"),
+        accountBloc: _accountBloc,
+        editAccountBloc: _editAccountBloc,
+      ),
     ),
   );
 }
