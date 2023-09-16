@@ -28,7 +28,7 @@ class EditAccountTestParts {
     await tester.tap(enterNameTextField);
     await tester.enterText(enterNameTextField, "Osman Furkan");
     await tester.testTextInput.receiveAction(TextInputAction.done);
-    await addDelay(500);
+    await addDelay(1000);
     expect(expectedName, findsOneWidget);
     await tester.pump();
   }

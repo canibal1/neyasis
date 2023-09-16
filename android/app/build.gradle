@@ -77,37 +77,31 @@ if (keystorePropertiesFile.exists()) {
     }
 
 
-def dotEnv = new Properties()
-def dotEnvFile = rootProject.file('.env')
-if (dotEnvFile.exists()) {
-    dotEnvFile.withReader('UTF-8') { reader ->
-        dotEnv.load(reader)
-    }
-}
+
 
     productFlavors{
-        fTest{
+        ftest{
             dimension 'default'
-            resValue "string", "app_name", dotEnv["applicationNameTest"]
-            applicationIdSuffix dotEnv["applicationIdSuffixTest"]
-            versionName dotEnv["versionNameTest"]
-            versionCode dotEnv["versionCodeTest"].toInteger()
+            resValue "string", "app_name", "Neyasis Test"
+            applicationIdSuffix ".test"
+            versionName "1.0.0"
+            versionCode 1
 
         }
         uat{
             dimension 'default'
-            resValue "string", "app_name", dotEnv["applicationNameUAT"]
-            applicationIdSuffix dotEnv["applicationIdSuffixUAT"]
-            versionName dotEnv["versionNameUAT"]
-            versionCode dotEnv["versionCodeUAT"].toInteger()
+            resValue "string", "app_name", "Neyasis UAT"
+            applicationIdSuffix ".uat"
+            versionName "2.0.0"
+            versionCode 2
         }
 
-        production{
+        prod{
             dimension 'default'
-            resValue "string", "app_name", dotEnv["applicationNameProd"]
+            resValue "string", "app_name", "Neyasis"
             applicationIdSuffix ''
-            versionName dotEnv["versionNameProd"]
-            versionCode dotEnv["versionCodeProd"].toInteger()
+            versionName "3.0.0"
+            versionCode 3
 
         }
 
